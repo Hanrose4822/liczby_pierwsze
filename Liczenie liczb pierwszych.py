@@ -1,20 +1,33 @@
 import time
-from datetime import datetime
+
 
 
 lp = []
-liczba = 1
+szukana_liczba = 1
 t1 = time.time()
-while True:
-    liczba = liczba + 1
-    for x in range(2, liczba+1):
+
+
+def czy_liczba_pierwsza(liczba):
+    if type(liczba) != int:
+        return False
+    if liczba <= 1:
+        return False
+    for x in range(2, liczba + 1):
         if liczba % x == 0:
             break
-    
-    if x == liczba:
-        t2 = time.time()
-        lp.append(x)
-        print('liczba pierwsza', x)
-        print(f'\t {t2-t1:.2f}')
-        t1 = t2
 
+    if x == liczba:
+        return True
+
+    return False
+
+
+while True:
+    szukana_liczba = szukana_liczba + 1
+
+    if czy_liczba_pierwsza(szukana_liczba):
+        t2 = time.time()
+        lp.append(szukana_liczba)
+        print('liczba pierwsza', szukana_liczba)
+        print(f'\t czas wyszukiwania liczby: {t2-t1:.2f}')
+        t1 = t2
